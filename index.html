@@ -13,15 +13,16 @@
       <div class="logo">A</div>
       <div>
         <div style="font-weight:800">AI Teacher Support</div>
-        <div style="font-size:12px;color:rgba(255,255,255,0.85)">Prototype — Hackathon Ready</div>
       </div>
     </div>
     <nav>
-      <a href="#features">Features</a>
-      <a href="#demo">Demo</a>
-      <a href="#dashboard">Dashboard</a>
-      <a href="#team">Team</a>
-      <a href="#contact">Contact</a>
+      <a href="Code/Features.html">Features</a>
+      <a href="Code/Demo.html">Demo</a>
+      <a href="Code/Dashboard.html">Dashboard</a>
+      <a href="Code/Team.html">Team</a>
+      <a href="Code/Contact.html">Contact</a>
+      <a href="ERP/ERP 1/index.html">ERP 1</a>
+      <a href="ERP/Erp 2/index.html">ERP 2</a>
     </nav>
   </header>
 
@@ -32,8 +33,8 @@
         <h1>Save time. Teach better. Personalize learning.</h1>
         <p>AI-Based Teacher Support System automates lesson planning, assessment, feedback, and analytics — freeing teachers to focus on impact.</p>
         <div class="cta">
-          <button class="btn" onclick="document.getElementById('demo').scrollIntoView({behavior:'smooth'})">Try Live Demo</button>
-          <button class="btn secondary" onclick="downloadPitch()">Download Pitch Deck</button>
+          <a class="btn" href="Code/Demo.html">Try Live Demo</a>
+          <a class="btn secondary" href="Code/Contact.html">Download Pitch Deck</a>
         </div>
 
         <div class="features" style="margin-top:18px">
@@ -64,193 +65,13 @@
       </aside>
     </section>
 
-    <!-- FEATURES DETAIL -->
-    <section id="features" style="margin-top:28px">
-      <div class="card">
-        <h2>Features</h2>
-        <p class="muted" style="margin-top:6px">All core features for MVP + a selection of advanced features are included in the prototype UI and demo flows.</p>
+  <!-- FEATURES moved to Code/Features.html -->
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px">
-          <div class="card">
-            <h3>Core</h3>
-            <ul style="margin-top:8px;list-style:disc;margin-left:18px;color:#334155">
-              <li>Teacher Dashboard & Quick Actions</li>
-              <li>AI Lesson Planner (text-based generator)</li>
-              <li>Auto Quiz Builder & Sample Auto-Grading</li>
-              <li>Student Performance Analytics (sample data)</li>
-              <li>Doubt Assistant (chatbot demo)</li>
-              <li>Resource Hub & Export (PDF/Print)</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Advanced / Stretch</h3>
-            <ul style="margin-top:8px;list-style:disc;margin-left:18px;color:#334155">
-              <li>Slide & Notes Generator (simulated)</li>
-              <li>Adaptive Learning Paths (UI only)</li>
-              <li>Multilingual & TTS (placeholders)</li>
-              <li>Workload Balancer & Wellness nudges</li>
-              <li>Privacy & Ethics page + opt-in mockups</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+  <!-- DEMO moved to Code/Demo.html -->
 
-    <!-- DEMO -->
-    <section id="demo" style="margin-top:28px">
-      <div class="card">
-        <h2>Live Demo</h2>
-        <p class="muted">Try the planner, quiz builder, and chatbot below. All generation is done locally with templates (no external AI call) so the demo is reliable offline.</p>
+  <!-- DASHBOARD moved to Code/Dashboard.html -->
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px">
-          <!-- Lesson Planner -->
-          <div class="card">
-            <h3>Lesson Planner</h3>
-            <div class="demo-controls">
-              <label>Topic</label>
-              <input id="lp-topic" type="text" placeholder="e.g. Photosynthesis" value="Photosynthesis">
-
-              <label>Grade / Level</label>
-              <select id="lp-grade"><option>Grade 6</option><option selected>Grade 8</option><option>High School</option><option>College</option></select>
-
-              <label>Duration (minutes)</label>
-              <input id="lp-duration" type="text" placeholder="e.g. 45" value="45">
-
-              <label>Focus (objectives, skills)</label>
-              <input id="lp-focus" type="text" placeholder="e.g. Identify stomata, explain photosynthesis" value="Identify stomata, explain photosynthesis">
-
-              <div style="margin-top:10px;display:flex;gap:8px">
-                <button class="btn" onclick="generateLesson()">Generate Lesson Plan</button>
-                <button class="btn secondary" onclick="copyToClipboard('lesson-output')">Copy</button>
-                <button class="btn secondary" onclick="printArea('lesson-output')">Print / PDF</button>
-              </div>
-
-              <div id="lesson-output" class="output" style="min-height:120px;margin-top:12px">Your generated lesson plan will appear here.</div>
-            </div>
-          </div>
-
-          <!-- Quiz Builder -->
-          <div class="card">
-            <h3>Quiz Builder</h3>
-            <div class="demo-controls">
-              <label>Topic</label>
-              <input id="q-topic" type="text" placeholder="e.g. Photosynthesis" value="Photosynthesis">
-              <label>Number of MCQs</label>
-              <select id="q-count"><option>3</option><option selected>5</option><option>8</option></select>
-              <label>Difficulty</label>
-              <select id="q-diff"><option>Easy</option><option selected>Medium</option><option>Hard</option></select>
-
-              <div style="margin-top:10px;display:flex;gap:8px">
-                <button class="btn" onclick="generateQuiz()">Generate Quiz</button>
-                <button class="btn secondary" onclick="gradeSampleAnswers()">Auto-Grade Sample</button>
-                <button class="btn secondary" onclick="copyToClipboard('quiz-output')">Copy</button>
-              </div>
-
-              <div id="quiz-output" class="output" style="min-height:120px;margin-top:12px">Quiz will appear here.</div>
-            </div>
-          </div>
-        </div>
-
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px">
-          <!-- Chatbot -->
-          <div class="card">
-            <h3>Doubt Assistant (Chatbot)</h3>
-            <div>
-              <label>Ask a student question</label>
-              <input id="chat-input" type="text" placeholder="e.g. What are stomata?" value="What are stomata?">
-              <div style="margin-top:8px;display:flex;gap:8px"><button class="btn" onclick="chatAsk()">Ask</button>
-              <button class="btn secondary" onclick="summarizeDoubts()">Teacher Summary</button></div>
-
-              <div id="chat-output" class="output" style="min-height:120px;margin-top:12px">Chatbot responses will appear here.</div>
-            </div>
-          </div>
-
-          <!-- Resource Hub -->
-          <div class="card">
-            <h3>Resource Hub (Sample)</h3>
-            <p class="muted">Upload resources (mock), tag them to topics, and the AI suggests matches.</p>
-            <label>Resource Title</label>
-            <input id="res-title" type="text" placeholder="Intro to chloroplasts">
-            <label>Tags (comma)</label>
-            <input id="res-tags" type="text" placeholder="photosynthesis,plants,grade8">
-            <div style="margin-top:8px;display:flex;gap:8px"><button class="btn" onclick="addResource()">Add Resource</button>
-            <button class="btn secondary" onclick="suggestResources()">Suggest for Topic</button></div>
-            <div id="res-list" style="margin-top:10px"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- DASHBOARD -->
-    <section id="dashboard" style="margin-top:28px">
-      <div class="card">
-        <h2>Dashboard (Preview)</h2>
-        <p class="muted">Sample analytics from dummy data. Use this section to show judges how the real analytics would look.</p>
-
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px">
-          <div class="card">
-            <h4>Class Performance - Last 6 Weeks</h4>
-            <div class="chart" id="chart-class">(chart placeholder)</div>
-          </div>
-          <div class="card">
-            <h4>Top Concerns</h4>
-            <ul style="margin-top:8px">
-              <li>Topic: Photosynthesis — 40% students low mastery</li>
-              <li>Topic: Fractions — 18% need intervention</li>
-              <li>Attendance: 92% average</li>
-            </ul>
-          </div>
-        </div>
-
-        <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
-          <button class="btn" onclick="downloadCSV()">Export Sample Report (CSV)</button>
-          <div class="muted">Tip: Use mock data for hackathon demo to avoid sensitive info.</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TEAM + CONTACT -->
-    <section id="team" style="margin-top:28px">
-      <div class="card">
-        <h2>Team</h2>
-        <p class="muted">Hackathon team and roles</p>
-        <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
-          <div style="flex:0 0 200px;background:#fff;border-radius:8px;padding:12px;box-shadow:0 6px 18px rgba(2,6,23,0.04)">
-            <div style="font-weight:800">Shreyansh Gupta</div>
-            <div class="muted">Front-end/Web Development</div>
-            <div style="margin-top:8px"><a href="https://github.com/ShreyanshGupta205" target="_blank" rel="noopener noreferrer">GitHub</a> • <a href="https://www.linkedin.com/in/shreyanshgupta205/" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
-          </div>
-          <div style="flex:0 0 200px;background:#fff;border-radius:8px;padding:12px;box-shadow:0 6px 18px rgba(2,6,23,0.04)">
-            <div style="font-weight:800">Reet Maurya</div>
-            <div class="muted">Back -end development/Research</div>
-            <div style="margin-top:8px"><a href="https://github.com/reet-n02022" target="_blank" rel="noopener noreferrer">GitHub</a> • <a href="https://www.linkedin.com/in/reet1309/" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
-          </div>
-          <div style="flex:0 0 200px;background:#fff;border-radius:8px;padding:12px;box-shadow:0 6px 18px rgba(2,6,23,0.04)">
-            <div style="font-weight:800">Sanskriti Kumari</div>
-            <div class="muted">PPT preparation/Web design</div>
-            <div style="margin-top:8px"><a href="https://github.com/sanskriti2005-bot" target="_blank" rel="noopener noreferrer">GitHub</a> • <a href="https://in.linkedin.com/in/sanskriti-singh-81b84131a" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
-          </div>
-          <div style="flex:0 0 200px;background:#fff;border-radius:8px;padding:12px;box-shadow:0 6px 18px rgba(2,6,23,0.04)">
-            <div style="font-weight:800">Suryansh Chaudhary</div>
-            <div class="muted">PPT preparation/Web design</div>
-            <div style="margin-top:8px"><a href="https://github.com/suryanshchaudhary4" target="_blank" rel="noopener noreferrer">GitHub</a> • <a href="https://www.linkedin.com/in/suryansh-chaudhary-44913636a/" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-   
-
-    <section id="contact" style="margin-top:18px">
-      <div class="card">
-        <h2>Contact & Pitch</h2>
-        <p class="muted">Download the hackathon pitch or contact the team.</p>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
-          <button class="btn" onclick="downloadPitch()">Download Pitch Deck</button>
-          <button class="btn secondary" onclick="window.location='#team'">Meet the Team</button>
-        </div>
-      </div>
-    </section>
+  <!-- TEAM moved to Code/Team.html and CONTACT moved to Code/Contact.html -->
 
     <section id="privacy" style="margin-top:18px">
       <div class="card">
@@ -274,5 +95,3 @@
   <script src="js/app.js"></script>
 </body>
 </html>
-
-
