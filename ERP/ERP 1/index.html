@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ERP — AI-Based Teacher Support System</title>
+<style>
+  /* Basic Reset */
+  * { box-sizing: border-box; margin:0; padding:0; }
+  html, body { font-family: Inter, sans-serif; line-height:1.4; background:#f8fafc; color:#0f172a; }
+  a { text-decoration:none; color:inherit; }
+
+  /* Header */
+  header { display:flex; justify-content:space-between; align-items:center; padding:18px 28px; background:linear-gradient(90deg,#0ea5e9,#7c3aed); color:white; }
+  .logo { width:48px; height:48px; border-radius:8px; background: rgba(255,255,255,0.18); display:flex; justify-content:center; align-items:center; font-weight:700; }
+  nav a { margin-left:16px; font-weight:600; color: rgba(255,255,255,0.95); }
+
+  /* Container */
+  .container { max-width:1200px; margin:28px auto; padding:0 20px; }
+  .hero-left { margin-bottom:18px; }
+  .hero h1 { font-size:28px; margin-bottom:8px; }
+  .muted { color:#64748b; font-size:13px; }
+
+  .card { background:white; border-radius:12px; box-shadow:0 6px 18px rgba(15,23,42,0.06); padding:16px; margin-bottom:20px; }
+  .cta { display:flex; gap:12px; margin-bottom:18px; }
+  .btn { background:#0ea5e9; color:white; border:none; padding:10px 14px; border-radius:8px; font-weight:700; cursor:pointer; }
+  .btn.secondary { background:white; color:#0f172a; border:1px solid #e2e8f0; }
+  .btn.small { padding:6px 10px; font-size:13px; }
+
+  /* Sidebar & modules */
+  .erp-container { display:flex; gap:18px; }
+  .erp-sidebar { flex:0 0 220px; }
+  .erp-sidebar h3 { margin-bottom:8px; }
+  .erp-sidebar ul { list-style:none; }
+  .erp-sidebar li { margin-bottom:8px; }
+  .erp-sidebar button { width:100%; padding:8px; border:none; border-radius:6px; cursor:pointer; text-align:left; }
+  .erp-sidebar button.active { background:#0ea5e9; color:white; font-weight:700; }
+
+  .erp-main { flex:1; }
+  .module { display:none; }
+  .module[data-visible] { display:block; margin-top:16px; }
+  .module-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+  .module-actions { display:flex; gap:10px; }
+
+  /* Forms */
+  .form-row { display:flex; gap:12px; margin-bottom:12px; flex-wrap:wrap; }
+  .form-row label { display:flex; flex-direction:column; flex:1; font-size:13px; }
+  .form-row input, .form-row select { padding:8px; border-radius:6px; border:1px solid #e6eef6; margin-top:4px; }
+
+  /* Tables */
+  .table-wrap { overflow-x:auto; margin-top:12px; }
+  table { width:100%; border-collapse:collapse; font-size:14px; }
+  thead { background:#f1f5f9; }
+  th, td { padding:8px 12px; border:1px solid #e2e8f0; text-align:left; }
+  th { font-weight:700; }
+  tr:nth-child(even) { background:#f9fafb; }
+
+  .report-output { background:#f1f5f9; padding:10px; white-space: pre-wrap; border-radius:6px; font-family: monospace; }
+
+  /* Footer */
+  footer { margin-top:40px; padding:24px; background:#0f172a; color:#e6eef6; border-top:4px solid rgba(255,255,255,0.03); }
+  footer .footer-grid { display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">A</div>
+  <nav>
+      <a href="../index.html">Home</a>
+      <a href="Features.html">Features</a>
+      <a href="Demo.html">Demo</a>
+      <a href="Dashboard.html">Dashboard</a>
+      <a href="Team.html">Team</a>
+      <a href="Contact.html">Contact</a>
+      <a href="../ERP/ERP 1/index.html">ERP 1</a>
+      <a href="../ERP/Erp 2/index.html">ERP 2</a>
+    </nav>
+</header>
+
+<main class="container">
+  <div class="hero-left card">
+    <h1>ERP Dashboard — School Resource Planning</h1>
+    <p class="muted">Manage Finance, HR, Inventory, and Student Records — Demo integration with AI Teacher Support.</p>
+  </div>
+
+  <div class="card erp-container">
+    <!-- Sidebar -->
+    <aside class="erp-sidebar">
+      <h3>ERP Modules</h3>
+      <ul>
+        <li><button data-module="finance" class="mod-btn active">Finance</button></li>
+        <li><button data-module="hr" class="mod-btn">HR</button></li>
+        <li><button data-module="inventory" class="mod-btn">Inventory</button></li>
+        <li><button data-module="student" class="mod-btn">Student Records</button></li>
+        <li><button data-module="reports" class="mod-btn">Reports</button></li>
+      </ul>
+    </aside>
+
+    <!-- Modules -->
+    <section class="erp-main">
+      <!-- Finance -->
+      <div class="module" id="finance" data-visible>
+        <div class="module-header"><h2>Finance</h2></div>
+        <div class="module-body card">
+          <div class="form-row">
+            <label>Title <input id="fin-title" placeholder="e.g., Lab purchase"></label>
+            <label>Type <select id="fin-type"><option>Expense</option><option>Income</option></select></label>
+            <label>Amount <input id="fin-amount" type="number" placeholder="₹"></label>
+          </div>
+          <div class="form-row">
+            <label>Date <input id="fin-date" type="date"></label>
+            <label style="flex:1">Notes <input id="fin-notes" placeholder="Optional notes"></label>
+            <button id="add-fin" class="btn small">Add Transaction</button>
+          </div>
+          <div class="table-wrap">
+            <table id="fin-table">
+              <thead><tr><th>ID</th><th>Title</th><th>Type</th><th>Amount</th><th>Date</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Lab Equipment</td><td>Expense</td><td>₹12,500</td><td>2025-10-01</td><td>Science Lab</td></tr>
+                <tr><td>2</td><td>Student Fees</td><td>Income</td><td>₹45,000</td><td>2025-10-05</td><td>October Fees</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- HR -->
+      <div class="module" id="hr">
+        <div class="module-header"><h2>HR</h2></div>
+        <div class="module-body card">
+          <div class="form-row">
+            <label>Name <input id="hr-name" placeholder="Full name"></label>
+            <label>Role <select id="hr-role"><option>Teacher</option><option>Admin</option><option>Support</option></select></label>
+            <label>Salary <input id="hr-salary" type="number"></label>
+          </div>
+          <div class="form-row">
+            <label>Join Date <input id="hr-join" type="date"></label>
+            <label style="flex:1">Notes <input id="hr-notes" placeholder="Optional notes"></label>
+            <button id="add-hr" class="btn small">Add Staff</button>
+          </div>
+          <div class="table-wrap">
+            <table id="hr-table">
+              <thead><tr><th>ID</th><th>Name</th><th>Role</th><th>Salary</th><th>Joined</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Mr. Sharma</td><td>Teacher</td><td>₹35,000</td><td>2025-06-01</td></tr>
+                <tr><td>2</td><td>Ms. Mehta</td><td>Admin</td><td>₹28,000</td><td>2025-07-15</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Inventory -->
+      <div class="module" id="inventory">
+        <div class="module-header"><h2>Inventory</h2></div>
+        <div class="module-body card">
+          <div class="form-row">
+            <label>Item Name <input id="inv-name"></label>
+            <label>Category <input id="inv-cat"></label>
+            <label>Qty <input id="inv-qty" type="number"></label>
+          </div>
+          <div class="form-row">
+            <label>Location <input id="inv-loc"></label>
+            <label style="flex:1">Notes <input id="inv-notes"></label>
+            <button id="add-inv" class="btn small">Add Item</button>
+          </div>
+          <div class="table-wrap">
+            <table id="inv-table">
+              <thead><tr><th>ID</th><th>Item</th><th>Category</th><th>Qty</th><th>Location</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Chairs</td><td>Furniture</td><td>50</td><td>Classroom</td></tr>
+                <tr><td>2</td><td>Notebooks</td><td>Stationery</td><td>200</td><td>Store Room</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Student Records -->
+      <div class="module" id="student">
+        <div class="module-header"><h2>Student Records</h2></div>
+        <div class="module-body card">
+          <div class="form-row">
+            <label>Name <input id="stu-name"></label>
+            <label>Grade <input id="stu-grade" type="number" min="1" max="12"></label>
+            <label>Roll <input id="stu-roll"></label>
+          </div>
+          <div class="form-row">
+            <label>Parent <input id="stu-parent"></label>
+            <label style="flex:1">Notes <input id="stu-notes"></label>
+            <button id="add-stu" class="btn small">Add Student</button>
+          </div>
+          <div class="table-wrap">
+            <table id="stu-table">
+              <thead><tr><th>ID</th><th>Name</th><th>Grade</th><th>Roll</th><th>Parent</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Aman</td><td>6</td><td>12</td><td>Mr. Gupta</td></tr>
+                <tr><td>2</td><td>Riya</td><td>7</td><td>7</td><td>Ms. Sharma</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reports -->
+      <div class="module" id="reports">
+        <div class="module-header"><h2>Reports</h2></div>
+        <div class="module-body card">
+          <button id="gen-report" class="btn small">Generate Combined Report</button>
+          <pre id="report-output" class="report-output">No report generated yet.</pre>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-grid">
+    <div><div style="font-weight:800">AI-Based Teacher Support</div><div class="muted">Prototype — Hackathon Demo</div></div>
+    <div class="muted">Made with ♥ — Swap in real AI APIs for production.</div>
+  </div>
+</footer>
+
+<script>
+  // Module toggle
+  const buttons = document.querySelectorAll('.mod-btn');
+  const modules = document.querySelectorAll('.module');
+  buttons.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      buttons.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const target=btn.getAttribute('data-module');
+      modules.forEach(m=>m.id===target?m.setAttribute('data-visible',''):m.removeAttribute('data-visible'));
+    });
+  });
+
+  function addRow(tableId, values){
+    const table = document.getElementById(tableId).querySelector('tbody');
+    const id = table.rows.length + 1;
+    const row = table.insertRow();
+    row.innerHTML = `<td>${id}</td>` + values.map(v=>`<td>${v}</td>`).join('');
+  }
+
+  // Finance
+  document.getElementById('add-fin').addEventListener('click',()=>{
+    const title=document.getElementById('fin-title').value;
+    const type=document.getElementById('fin-type').value;
+    const amount=document.getElementById('fin-amount').value;
+    const date=document.getElementById('fin-date').value;
+    const notes=document.getElementById('fin-notes').value;
+    if(!title||!amount||!date)return alert("Fill Title, Amount and Date");
+    addRow('fin-table',[title,type,'₹'+amount,date,notes]);
+    document.getElementById('fin-title').value='';document.getElementById('fin-amount').value='';document.getElementById('fin-date').value='';document.getElementById('fin-notes').value='';
+  });
+
+  // HR
+  document.getElementById('add-hr').addEventListener('click',()=>{
+    const name=document.getElementById('hr-name').value;
+    const role=document.getElementById('hr-role').value;
+    const salary=document.getElementById('hr-salary').value;
+    const join=document.getElementById('hr-join').value;
+    const notes=document.getElementById('hr-notes').value;
+    if(!name||!salary||!join)return alert("Fill Name, Salary and Join Date");
+    addRow('hr-table',[name,role,'₹'+salary,join,notes]);
+    document.getElementById('hr-name').value='';document.getElementById('hr-salary').value='';document.getElementById('hr-join').value='';document.getElementById('hr-notes').value='';
+  });
+
+  // Inventory
+  document.getElementById('add-inv').addEventListener('click',()=>{
+    const name=document.getElementById('inv-name').value;
+    const cat=document.getElementById('inv-cat').value;
+    const qty=document.getElementById('inv-qty').value;
+    const loc=document.getElementById('inv-loc').value;
+    const notes=document.getElementById('inv-notes').value;
+    if(!name||!qty)return alert("Fill Item Name and Qty");
+    addRow('inv-table',[name,cat,qty,loc,notes]);
+    document.getElementById('inv-name').value='';document.getElementById('inv-cat').value='';document.getElementById('inv-qty').value='';document.getElementById('inv-loc').value='';document.getElementById('inv-notes').value='';
+  });
+
+  // Student
+  document.getElementById('add-stu').addEventListener('click',()=>{
+    const name=document.getElementById('stu-name').value;
+    const grade=document.getElementById('stu-grade').value;
+    const roll=document.getElementById('stu-roll').value;
+    const parent=document.getElementById('stu-parent').value;
+    const notes=document.getElementById('stu-notes').value;
+    if(!name||!grade||!roll)return alert("Fill Name, Grade and Roll");
+    addRow('stu-table',[name,grade,roll,parent,notes]);
+    document.getElementById('stu-name').value='';document.getElementById('stu-grade').value='';document.getElementById('stu-roll').value='';document.getElementById('stu-parent').value='';document.getElementById('stu-notes').value='';
+  });
+
+  // Reports
+  document.getElementById('gen-report').addEventListener('click',()=>{
+    const report=[];
+    ['fin-table','hr-table','inv-table','stu-table'].forEach(id=>{
+      const table=document.getElementById(id);
+      [...table.rows].slice(1).forEach(r=>report.push([...r.cells].map(c=>c.textContent).join(',')));
+    });
+    document.getElementById('report-output').textContent=report.length?report.join('\n'):'No data available';
+  });
+</script>
+
+</body>
+</html>

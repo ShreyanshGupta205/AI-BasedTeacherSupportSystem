@@ -1,0 +1,123 @@
+/* Teacher ERP Dashboard Styles */
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+header {
+  background: linear-gradient(90deg, #0ea5e9, #7c3aed);
+  color: white;
+  padding: 16px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .logo {
+  width: 48px;
+  height: 48px;
+  background: rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+nav a {
+  color: white;
+  margin-left: 16px;
+  text-decoration: none;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+nav a:hover {
+  opacity: 1;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  padding: 24px;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+.muted {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+
+th, td {
+  border: 1px solid #e2e8f0;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background: #f1f5f9;
+  font-weight: 600;
+}
+
+.btn {
+  margin-top: 20px;
+  background: #0ea5e9;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  background: #0284c7;
+}
+
+footer {
+  background: #0f172a;
+  color: #e2e8f0;
+  text-align: center;
+  padding: 18px 0;
+  margin-top: 40px;
+}
+
+/* Status Colors */
+.status-present {
+  color: #16a34a; /* green */
+  font-weight: 700;
+}
+
+.status-absent {
+  color: #dc2626; /* red */
+  font-weight: 700;
+}
+
+.status-leave {
+  color: #f59e0b; /* yellow/orange */
+  font-weight: 700;
+}

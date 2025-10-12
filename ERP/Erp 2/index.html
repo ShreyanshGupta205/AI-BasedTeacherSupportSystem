@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ERP Dashboard | AI Teacher System</title>
+  <style>
+    /* Basic Reset */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { font-family: Inter, sans-serif; line-height: 1.4; color: #0f172a; background: #f8fafc; }
+    a { text-decoration: none; color: inherit; }
+
+    /* Header */
+    header { background: linear-gradient(90deg,#0ea5e9,#7c3aed); color: white; padding: 18px 28px; display: flex; justify-content: space-between; align-items: center; }
+    header .brand { display: flex; gap: 12px; align-items: center; }
+    .logo { width: 48px; height: 48px; border-radius: 8px; background: rgba(255,255,255,0.18); display: flex; justify-content: center; align-items: center; font-weight: 700; }
+    nav a { margin-left: 16px; color: rgba(255,255,255,0.95); font-weight: 600; }
+
+    /* Container & Hero */
+    .container { max-width: 1200px; margin: 28px auto; padding: 0 20px; }
+    .hero { display: flex; gap: 28px; align-items: flex-start; }
+    .hero-left { flex: 1; }
+    .hero h1 { font-size: 30px; margin-bottom: 8px; }
+    .hero p { color: #334155; margin-bottom: 12px; }
+    .cta { display: flex; gap: 12px; margin-bottom: 18px; }
+    .btn { background: #0ea5e9; color: white; padding: 10px 14px; border-radius: 8px; font-weight: 700; border: none; cursor: pointer; }
+    .btn.secondary { background: white; color: #0f172a; border: 1px solid #e2e8f0; }
+    .btn.small { padding: 6px 10px; font-size: 13px; }
+
+    /* Card */
+    .card { background: white; border-radius: 12px; box-shadow: 0 6px 18px rgba(15,23,42,0.06); padding: 16px; margin-bottom: 20px; }
+
+    /* Table */
+    .table-wrapper { overflow-x: auto; margin-top: 12px; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 8px 12px; border: 1px solid #e2e8f0; text-align: left; }
+    th { font-weight: 700; background: #f1f5f9; }
+    tr:nth-child(even) { background: #f9fafb; }
+
+    .muted { color: #64748b; font-size: 13px; }
+    .chip { display: inline-block; padding: 6px 8px; background: #eef2ff; border-radius: 999px; font-weight: 700; color: #0f172a; }
+
+    footer { margin-top: 40px; padding: 24px; background: #0f172a; color: #e6eef6; border-top: 4px solid rgba(255,255,255,0.03); }
+    footer .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+    .form-row { display: flex; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+    .form-row label { display: flex; flex-direction: column; flex: 1; font-size: 13px; }
+    .form-row input, .form-row select { padding: 8px; border-radius: 6px; border: 1px solid #e6eef6; margin-top: 4px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo">A</div>
+    <div>
+      <div style="font-weight:800">AI Teacher Support</div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.85)">ERP — Demo</div>
+    </div>
+  </div>
+  <nav>
+      <a href="../index.html">Home</a>
+      <a href="Features.html">Features</a>
+      <a href="Demo.html">Demo</a>
+      <a href="Dashboard.html">Dashboard</a>
+      <a href="Team.html">Team</a>
+      <a href="Contact.html">Contact</a>
+      <a href="../ERP/ERP 1/index.html">ERP 1</a>
+      <a href="../ERP/Erp 2/index.html">ERP 2</a>
+    </nav>
+</header>
+
+<main class="container">
+  <section class="hero grid two-col">
+    <div class="hero-left card">
+      <h1>ERP — Attendance & Admin</h1>
+      <p class="muted">Demo focused on student attendance and basic records integration.</p>
+      <div class="cta">
+        <a class="btn" href="#attendanceTable">View Attendance</a>
+        <a class="btn secondary" href="#">Submit Attendance</a>
+      </div>
+    </div>
+
+    <aside class="card">
+      <h3 style="margin-bottom:8px">Quick Stats</h3>
+      <div style="display:flex;gap:10px;margin-bottom:12px">
+        <div style="flex:1">
+          <div class="chip">Students</div>
+          <div style="font-size:20px;font-weight:800;margin-top:8px">420</div>
+          <div class="muted">Total</div>
+        </div>
+        <div style="flex:1">
+          <div class="chip">Attendance</div>
+          <div style="font-size:20px;font-weight:800;margin-top:8px">92%</div>
+          <div class="muted">Today</div>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <section class="card" style="margin-top:18px">
+    <h2>📊 Attendance Records</h2>
+    <p class="muted">All attendance submissions by students</p>
+
+    <div class="form-row">
+      <label>Name <input id="nameInput" placeholder="Student Name"></label>
+      <label>Class <input id="classInput" placeholder="Class"></label>
+      <label>Section <input id="sectionInput" placeholder="Section"></label>
+      <label>Status 
+        <select id="statusInput">
+          <option>Present</option>
+          <option>Absent</option>
+        </select>
+      </label>
+      <label>Date <input id="dateInput" type="date"></label>
+      <button class="btn small" id="addAttendance">Add</button>
+    </div>
+
+    <div class="table-wrapper">
+      <table id="attendanceTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Class</th>
+            <th>Section</th>
+            <th>Status</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <button class="btn" id="clearData">🗑 Clear Records</button>
+  </section>
+
+  <section id="privacy" style="margin-top:18px">
+    <div class="card">
+      <h3>Privacy & Notes</h3>
+      <p class="muted">This demo stores local sample data only. Replace with server-backed storage for production.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <div style="font-weight:800">AI-Based Teacher Support</div>
+      <div class="muted">Prototype — For Hackathon Demo</div>
+    </div>
+    <div class="muted">Made with ♥ — Add your team info and swap in real AI APIs for production.</div>
+  </div>
+</footer>
+
+<script>
+  const tableBody = document.querySelector("#attendanceTable tbody");
+
+  // Initial sample data
+  const attendanceData = [
+    { name: "Aman", class: "6", section: "A", status: "Present", date: "2025-10-12" },
+    { name: "Riya", class: "7", section: "B", status: "Absent", date: "2025-10-12" },
+    { name: "Neha", class: "5", section: "C", status: "Present", date: "2025-10-12" },
+    { name: "Rahul", class: "8", section: "A", status: "Present", date: "2025-10-12" },
+    { name: "Sanya", class: "6", section: "B", status: "Absent", date: "2025-10-12" },
+  ];
+
+  function renderTable() {
+    tableBody.innerHTML = "";
+    attendanceData.forEach((item, index) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${item.name}</td>
+        <td>${item.class}</td>
+        <td>${item.section}</td>
+        <td>${item.status}</td>
+        <td>${item.date}</td>
+      `;
+      tableBody.appendChild(row);
+    });
+  }
+
+  renderTable();
+
+  // Add new attendance
+  document.getElementById("addAttendance").addEventListener("click", () => {
+    const name = document.getElementById("nameInput").value;
+    const cls = document.getElementById("classInput").value;
+    const sec = document.getElementById("sectionInput").value;
+    const status = document.getElementById("statusInput").value;
+    const date = document.getElementById("dateInput").value;
+
+    if(!name || !cls || !sec || !date) {
+      return alert("Please fill all fields");
+    }
+
+    attendanceData.push({ name, class: cls, section: sec, status, date });
+    renderTable();
+
+    // Clear inputs
+    document.getElementById("nameInput").value = "";
+    document.getElementById("classInput").value = "";
+    document.getElementById("sectionInput").value = "";
+    document.getElementById("dateInput").value = "";
+  });
+
+  // Clear all records
+  document.getElementById("clearData").addEventListener("click", () => {
+    if(confirm("Are you sure you want to clear all records?")) {
+      attendanceData.length = 0;
+      renderTable();
+    }
+  });
+</script>
+
+</body>
+</html>

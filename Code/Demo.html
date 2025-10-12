@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Demo — AI Teacher Support</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">A</div>
+      <div>
+        <div style="font-weight:800">AI Teacher Support</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.85)">Prototype — Hackathon Ready</div>
+      </div>
+    </div>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="Features.html">Features</a>
+      <a href="Demo.html">Demo</a>
+      <a href="Dashboard.html">Dashboard</a>
+      <a href="Team.html">Team</a>
+      <a href="Contact.html">Contact</a>
+      <a href="../ERP/ERP 1/index.html">ERP 1</a>
+      <a href="../ERP/Erp 2/index.html">ERP 2</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section id="demo" style="margin-top:28px">
+      <div class="card">
+        <h2>Live Demo</h2>
+        <p class="muted">Try the planner, quiz builder, and chatbot below. All generation is done locally with templates (no external AI call) so the demo is reliable offline.</p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px">
+          <!-- Lesson Planner -->
+          <div class="card">
+            <h3>Lesson Planner</h3>
+            <div class="demo-controls">
+              <label>Topic</label>
+              <input id="lp-topic" type="text" placeholder="e.g. Photosynthesis" value="Photosynthesis">
+
+              <label>Grade / Level</label>
+              <select id="lp-grade"><option>Grade 6</option><option selected>Grade 8</option><option>High School</option><option>College</option></select>
+
+              <label>Duration (minutes)</label>
+              <input id="lp-duration" type="text" placeholder="e.g. 45" value="45">
+
+              <label>Focus (objectives, skills)</label>
+              <input id="lp-focus" type="text" placeholder="e.g. Identify stomata, explain photosynthesis" value="Identify stomata, explain photosynthesis">
+
+              <div style="margin-top:10px;display:flex;gap:8px">
+                <button class="btn" onclick="generateLesson()">Generate Lesson Plan</button>
+                <button class="btn secondary" onclick="copyToClipboard('lesson-output')">Copy</button>
+                <button class="btn secondary" onclick="printArea('lesson-output')">Print / PDF</button>
+              </div>
+
+              <div id="lesson-output" class="output" style="min-height:120px;margin-top:12px">Your generated lesson plan will appear here.</div>
+            </div>
+          </div>
+
+          <!-- Quiz Builder -->
+          <div class="card">
+            <h3>Quiz Builder</h3>
+            <div class="demo-controls">
+              <label>Topic</label>
+              <input id="q-topic" type="text" placeholder="e.g. Photosynthesis" value="Photosynthesis">
+              <label>Number of MCQs</label>
+              <select id="q-count"><option>3</option><option selected>5</option><option>8</option></select>
+              <label>Difficulty</label>
+              <select id="q-diff"><option>Easy</option><option selected>Medium</option><option>Hard</option></select>
+
+              <div style="margin-top:10px;display:flex;gap:8px">
+                <button class="btn" onclick="generateQuiz()">Generate Quiz</button>
+                <button class="btn secondary" onclick="gradeSampleAnswers()">Auto-Grade Sample</button>
+                <button class="btn secondary" onclick="copyToClipboard('quiz-output')">Copy</button>
+              </div>
+
+              <div id="quiz-output" class="output" style="min-height:120px;margin-top:12px">Quiz will appear here.</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px">
+          <!-- Chatbot -->
+          <div class="card">
+            <h3>Doubt Assistant (Chatbot)</h3>
+            <div>
+              <label>Ask a student question</label>
+              <input id="chat-input" type="text" placeholder="e.g. What are stomata?" value="What are stomata?">
+              <div style="margin-top:8px;display:flex;gap:8px"><button class="btn" onclick="chatAsk()">Ask</button>
+              <button class="btn secondary" onclick="summarizeDoubts()">Teacher Summary</button></div>
+
+              <div id="chat-output" class="output" style="min-height:120px;margin-top:12px">Chatbot responses will appear here.</div>
+            </div>
+          </div>
+
+          <!-- Resource Hub -->
+          <div class="card">
+            <h3>Resource Hub (Sample)</h3>
+            <p class="muted">Upload resources (mock), tag them to topics, and the AI suggests matches.</p>
+            <label>Resource Title</label>
+            <input id="res-title" type="text" placeholder="Intro to chloroplasts">
+            <label>Tags (comma)</label>
+            <input id="res-tags" type="text" placeholder="photosynthesis,plants,grade8">
+            <div style="margin-top:8px;display:flex;gap:8px"><button class="btn" onclick="addResource()">Add Resource</button>
+            <button class="btn secondary" onclick="suggestResources()">Suggest for Topic</button></div>
+            <div id="res-list" style="margin-top:10px"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div style="font-weight:800">AI-Based Teacher Support</div>
+        <div class="muted">Prototype — For Hackathon Demo</div>
+      </div>
+      <div class="muted">Made with ♥ — Add your team info and swap in real AI APIs for production.</div>
+    </div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+</body>
+</html>

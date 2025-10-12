@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard — AI Teacher Support</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">A</div>
+      <div>
+        <div style="font-weight:800">AI Teacher Support</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.85)">Prototype — Hackathon Ready</div>
+      </div>
+    </div>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="Features.html">Features</a>
+      <a href="Demo.html">Demo</a>
+      <a href="Dashboard.html">Dashboard</a>
+      <a href="Team.html">Team</a>
+      <a href="Contact.html">Contact</a>
+      <a href="../ERP/ERP 1/index.html">ERP 1</a>
+      <a href="../ERP/Erp 2/index.html">ERP 2</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section id="dashboard" style="margin-top:28px">
+      <div class="card">
+        <h2>Dashboard (Preview)</h2>
+        <p class="muted">Sample analytics from dummy data. Use this section to show judges how the real analytics would look.</p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px">
+          <div class="card">
+            <h4>Class Performance - Last 6 Weeks</h4>
+            <div class="chart" id="chart-class">(chart placeholder)</div>
+          </div>
+          <div class="card">
+            <h4>Top Concerns</h4>
+            <ul style="margin-top:8px">
+              <li>Topic: Photosynthesis — 40% students low mastery</li>
+              <li>Topic: Fractions — 18% need intervention</li>
+              <li>Attendance: 92% average</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
+          <button class="btn" onclick="downloadCSV()">Export Sample Report (CSV)</button>
+          <div class="muted">Tip: Use mock data for hackathon demo to avoid sensitive info.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div style="font-weight:800">AI-Based Teacher Support</div>
+        <div class="muted">Prototype — For Hackathon Demo</div>
+      </div>
+      <div class="muted">Made with ♥ — Add your team info and swap in real AI APIs for production.</div>
+    </div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+</body>
+</html>

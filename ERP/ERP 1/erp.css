@@ -1,0 +1,80 @@
+/* ERP page styles - cohesive with main site (glass + gradient) */
+:root{
+  --accent1:#0ea5e9;
+  --accent2:#7c3aed;
+  --glass: rgba(255,255,255,0.82);
+  --muted:#64748b;
+  --bg: radial-gradient(circle at 20% 30%, #e9f8ff, #f7f4ff, #fbfcff);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:Poppins,Inter,Arial,sans-serif;background:var(--bg);color:#0f172a}
+a{color:inherit}
+
+.erp-header{
+  background:linear-gradient(90deg,var(--accent1),var(--accent2));
+  color:white;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 6px 20px rgba(124,58,237,0.18);position:sticky;top:0;z-index:50
+}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,rgba(255,255,255,0.4),rgba(255,255,255,0.2));display:flex;align-items:center;justify-content:center;font-weight:800;color:#1e3a8a}
+.brand-text .title{font-weight:800}
+.brand-text .subtitle{font-size:12px;color:rgba(255,255,255,0.9);margin-top:2px}
+
+.topnav a{margin-left:18px;color:rgba(255,255,255,0.95);text-decoration:none;font-weight:600;opacity:0.95}
+.topnav a.active{opacity:1;text-decoration:underline}
+
+.erp-container{display:flex;gap:24px;max-width:1200px;margin:34px auto;padding:0 20px}
+.erp-sidebar{width:260px;flex:0 0 260px}
+.erp-main{flex:1}
+
+.erp-sidebar h3{font-size:14px;margin-bottom:12px}
+.erp-sidebar ul{list-style:none;padding-left:0}
+.erp-sidebar .mod-btn{display:block;width:100%;text-align:left;padding:10px;border-radius:10px;border:none;background:transparent;cursor:pointer;font-weight:700;margin-bottom:8px;color:#0f172a}
+.erp-sidebar .mod-btn.active{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:white;box-shadow:0 6px 14px rgba(124,58,237,0.12)}
+
+.erp-kpis{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.kpi{background:var(--glass);padding:10px;border-radius:10px;border:1px solid rgba(0,0,0,0.04)}
+.kpi-label{font-size:12px;color:var(--muted)}
+.kpi-value{font-weight:800;font-size:18px;margin-top:6px}
+
+.sidebar-actions{margin-top:18px;display:flex;flex-direction:column;gap:8px}
+.btn{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:white;padding:8px 12px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
+.btn.small{padding:6px 10px;font-size:13px}
+.btn.ghost{background:transparent;color:#0f172a;border:1px solid rgba(15,23,42,0.06)}
+
+.module{margin-bottom:20px;display:none}
+.module[data-visible]{display:block}
+
+.module-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.module-header h2{font-size:18px}
+.module-actions{display:flex;align-items:center;gap:10px}
+
+/* Card body and forms */
+.card{background:rgba(255,255,255,0.9);backdrop-filter:blur(6px);padding:16px;border-radius:12px;border:1px solid rgba(0,0,0,0.04);box-shadow:0 8px 24px rgba(15,23,42,0.06)}
+.form-row{display:flex;gap:12px;margin-bottom:12px;align-items:center}
+.form-row label{display:flex;flex-direction:column;font-weight:600;font-size:13px;flex:0 0 200px}
+.form-row input, .form-row select{padding:8px;border-radius:8px;border:1px solid #e6eef6;margin-top:6px}
+.form-row input[type=date]{padding:6px}
+.form-row input[placeholder]{color:#0f172a}
+
+/* Table wrapper */
+.table-wrap{margin-top:10px;overflow:auto;border-radius:8px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+thead th{background:linear-gradient(90deg,rgba(250,250,255,0.9),rgba(246,246,255,0.9));text-align:left;padding:10px;font-weight:700;border-bottom:1px solid rgba(0,0,0,0.06)}
+tbody td{padding:10px;border-bottom:1px solid rgba(0,0,0,0.04)}
+.table-wrap table tr:hover{background:rgba(14,165,233,0.03)}
+
+.muted{color:var(--muted);font-size:13px}
+.report-output{white-space:pre-wrap;background:#0b1220;color:#f8fafc;padding:12px;border-radius:8px;min-height:140px;overflow:auto}
+
+/* Footer */
+.erp-footer{max-width:1200px;margin:18px auto;padding:18px;color:var(--muted);text-align:center}
+
+/* Responsive */
+@media (max-width:980px){
+  .erp-container{flex-direction:column;padding:16px}
+  .erp-sidebar{width:100%;order:2}
+  .erp-main{order:1}
+  .form-row{flex-direction:column}
+  .form-row label{flex:1}
+}
